@@ -10,7 +10,7 @@ function uuid() {
   
 // 喜马拉雅
 function requestApi(nonce){    
-    const param = JSON.stringify({mobile:"15532963398",nonce,"sendType":1,"signature": "c377d510c88702bc4b6b774b2d5cad9dc5ed0057"})
+    const param = {mobile:"17701086114",nonce: "0-3208B043DAE195ec35a9d8043974ac5e21cd48e807ef68979221a21c89175c",sendType:1,signature: "f3e0f6f24cd64f62fd4ecd1285813c8f50b3d85f"}
     console.log(param);
     return new Promise(async (resolve, reject) => {
         request({
@@ -18,9 +18,12 @@ function requestApi(nonce){
             method: "POST",
             json: true,
             headers: {
-                'Content-Type':'application/json'
+                "Content-Type": 'application/json; charset=UTF-8',
+                "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+                "Connection": "keep-alive",
+                "Accept": "*/*"
             },
-            body: param
+            body: param,
           }, function (error, response, body) {
             // console.log('error', error, 'response', response, 'body', body);
             if (!error && response.statusCode == 200) {
@@ -67,8 +70,9 @@ function waittime(){
 const ximanonce = async () => {
     const { nonce } = await api1()
     // console.log()
-    await waittime()
+    // await waittime()
     const result = await requestApi(nonce)
+    console.log('result', result);
 }
 yzm.get('/', async (req, res) => {
     await ximanonce()

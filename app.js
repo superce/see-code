@@ -17,6 +17,10 @@ app.use('/browser', bro)
 
 const yzm = require('./src/yzm/index')
 app.use('/yzm', yzm)
+
+const toutiao = require('./src/toutiao/index')
+app.use('/toutiao', toutiao)
+
 const server = app.listen(3300, () => {
     const host = server.address().address
     const port = server.address().port
